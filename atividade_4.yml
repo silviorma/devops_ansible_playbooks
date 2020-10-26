@@ -1,0 +1,16 @@
+---
+- name: Create a file and directory
+  hosts: pwd
+
+  tasks:
+    - name: Create a file
+      file:
+        path: /root/arq.txt
+        state: touch
+        mode: '0644'
+
+    - name: create a directory
+      file:
+        path: /root/bla
+        state: directory
+        mode: '0755'

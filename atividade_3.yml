@@ -1,0 +1,16 @@
+---
+- name: Copy file
+  hosts: pwd
+
+  tasks:
+    - name: Copy file from control to remote
+      copy:
+        src: /root/arq.txt
+        dest: /root/arq.txt
+        remote_src: no
+
+    - name: copy in remote machine
+      copy:
+        src: /root/arq.txt
+        dest: /root/new_arq.txt
+        remote_src: yes

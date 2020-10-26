@@ -1,0 +1,32 @@
+---
+- name: docker
+  hosts: banco
+
+  tasks:
+    - name: postgres databse
+      community.general.docker_container:
+        name: postgres-container
+        image: "postgres:latest"
+        state: started
+
+- name: docker nginx
+  hosts: nginx
+
+  tasks:
+    - name: nginx app
+      community.general.docker_container:
+        name: nginx-container
+        image: nginx:latest
+        state: started
+        ports:
+          - 8081:80
+
+- name: list all docker containers
+  hosts: pwd
+
+  tasks:
+    - name: list
+      shell: docker ps
+      register: out
+
+    - debug: var=out.stdout_lines

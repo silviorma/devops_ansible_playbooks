@@ -1,0 +1,23 @@
+---
+- name: Cache packets of system
+  hosts: pwd
+ 
+  tasks:
+       - command: apk update
+         when: ansible_os_family == "Alpine"
+   
+       - command: apt update
+         when: ansible_os_family == "Debian"
+
+
+--------------------------------------------------------------------
+
+ - name: Cache packets of system
+   hosts: pwd
+ 
+   tasks:
+        - apk: update_cache=yes
+          when: ansible_os_family == "Alpine"
+ 
+        - apt: update_cache=yes
+          when: ansible_os_family == "Debian"

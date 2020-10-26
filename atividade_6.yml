@@ -1,0 +1,18 @@
+---
+- name: get ip address with command 
+  hosts: pwd
+
+  tasks:
+    - name: get ip address with command
+      command: "ifconfig"
+      register: out
+
+    - debug:
+        msg: "{{ out.stdout_lines[1] }}"
+
+- name: get ip address with facts
+  hosts: pwd
+
+  tasks:
+    - debug:
+        msg: "{{ ansible_all_ipv4_addresses }}"
